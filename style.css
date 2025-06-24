@@ -68,22 +68,22 @@ h1 {
 /* Galerie-Layout */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
-/* Einzelne Galerie-Items */
+.gallery-item {
+  aspect-ratio: 1 / 1; /* quadratische Bildbox */
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000; /* Fallback */
+}
+
 .gallery-item img {
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.gallery-item img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-  cursor: pointer;
+  height: 100%;
+  object-fit: cover; /* Bild füllt die Box proportional */
+  display: block;
+  image-rendering: auto; /* oder: smooth */
 }
