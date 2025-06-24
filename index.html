@@ -1,57 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drögen raved!</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <div class="gallery-container">
-      <h1>Drögen raved!</h1>
-      <div>
-        <img src="Ballerina.png" alt="Image-Ballerina" class="ballerina" />
+    <header class="video-header">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="Video-Club.MP4" type="video/mp4" />
+        Dein Browser unterstützt das Video-Tag nicht.
+      </video>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="#musik">Musik</a></li>
+          <li><a href="#gaestebuch">Gästebuch</a></li>
+        </ul>
+      </nav>
+      <div class="header-content">
+        <h1>Drögen raved!</h1>
       </div>
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="IMG_5074.jpeg" alt="Gallery image 1" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5104.jpeg" alt="Gallery image 3" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5082.jpeg" alt="Gallery image 2" />
-        </div>
+    </header>
 
-        <div class="gallery-item">
-          <img src="IMG_5146.jpeg" alt="Gallery image 4" />
+    <main
+      style="
+        background-image: url('');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <section class="preview-gallery" aria-label="Vorschau der Galerie">
+        <img src="Ballerina.png" alt="Tanzende Ballerina" class="ballerina" />
+        <h2>Einblicke</h2>
+        <div id="random-images" class="gallery-grid">
+          <!-- Bilder werden per JavaScript eingefügt -->
         </div>
-        <div class="gallery-item">
-          <img src="IMG_5152.jpeg" alt="Gallery image 5" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5166.jpeg" alt="Gallery image 6" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5181.jpeg" alt="Gallery image 7" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5186.jpeg" alt="Gallery image 8" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5192.jpeg" alt="Gallery image 9" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5187.jpeg" alt="Gallery image 10" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5196.jpeg" alt="Gallery image 11" />
-        </div>
-        <div class="gallery-item">
-          <img src="IMG_5203.jpeg" alt="Gallery image 12" />
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Drögen Raved – Alle Rechte vorbehalten</p>
+    </footer>
+
+    <script>
+      const allImages = [
+        "IMG_5074.jpeg",
+        "IMG_5104.jpeg",
+        "IMG_5082.jpeg",
+        "IMG_5146.jpeg",
+        "IMG_5152.jpeg",
+        "IMG_5166.jpeg",
+        "IMG_5181.jpeg",
+        "IMG_5186.jpeg",
+        "IMG_5192.jpeg",
+        "IMG_5187.jpeg",
+        "IMG_5196.jpeg",
+        "IMG_5203.jpeg",
+      ];
+
+      const shuffled = allImages.sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 4);
+
+      const container = document.getElementById("random-images");
+      selected.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Zufallsbild";
+        img.classList.add("gallery-thumb");
+        container.appendChild(img);
+      });
+    </script>
   </body>
 </html>

@@ -1,89 +1,214 @@
+/* ======== BASIS ======== */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: "Arial", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
+  background-color: #111;
+  line-height: 1.5;
   min-height: 100vh;
-  background-image: url(Hintergrund.jpeg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* für coolen Parallax-Effekt */
-  position: relative;
 }
 
-/* Optional: leichter Farbfilter für bessere Lesbarkeit */
-body::before {
+h1 {
+  font-size: clamp(8rem, 10vw, 6rem);
+  padding: 0 1rem 2rem 1rem;
+  color: #ff3cac;
+  text-shadow: 0 0 10px #ff3cac, 0 0 20px #fa8bff;
+  text-align: center;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 120%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+  color: #fff;
+}
+
+/* ======== VIDEO HEADER ======== */
+.video-header {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+  max-width: 100vw;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.video-header::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* dunkelt das Bild ab */
+  background: rgba(0, 0, 0, 0.4);
   z-index: 0;
 }
 
-/* Damit Inhalte über dem Overlay liegen */
-.gallery-container,
-h1,
-.gallery {
+.header-content {
   position: relative;
   z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .ballerina {
-  animation: dance 1s ease-in-out infinite alternate;
+  position: fixed;
+  top: auto;
+  right: 2rem;
+  max-width: 100px;
+  animation: dance 1.2s infinite ease-in-out;
+  z-index: 2;
 }
 
 @keyframes dance {
   0% {
-    transform: rotate(-5deg) translateX(-100px);
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(5deg) translateY(-10px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(0);
+  }
+  75% {
+    transform: rotate(-5deg) translateY(-10px);
   }
   100% {
-    transform: rotate(5deg) translateX(5px);
+    transform: rotate(0deg) translateY(0);
   }
 }
 
-/* Titel */
+/* ======== NAVIGATION ======== */
+.navbar {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
 
-h1 {
-  margin-top: 3rem;
-  text-align: center;
-  font-size: 10rem;
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
   color: #ff3cac;
-  text-shadow: 0 0 5px #ff3cac, 0 0 10px #fa8bff, 0 0 20px #fa8bff;
 }
 
-/* Ballerina-Bild */
-.gallery-container > div:first-of-type img {
-  display: block;
-  margin: 0 auto 3rem;
-  max-width: 200px;
-  filter: drop-shadow(0 0 10px #fff);
+/* ======== GALERIE-VORSCHAU ======== */
+.preview-gallery {
+  padding: 2rem;
 }
 
-/* Galerie-Layout */
-.gallery {
+main.gallery {
+  padding: 2rem;
+  background-image: url("Hintergrund.jpeg");
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: brightness(0.8);
+}
+
+.gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
-  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.gallery-item {
-  aspect-ratio: 1 / 1; /* quadratische Bildbox */
-  overflow: hidden;
-  border-radius: 8px;
-  background: #000; /* Fallback */
-}
-
-.gallery-item img {
+.gallery-thumb {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Bild füllt die Box proportional */
-  display: block;
-  image-rendering: auto; /* oder: smooth */
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.05);
+}
+
+/* ======== FOOTER ======== */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #000;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  border-top: 1px solid #333;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: clamp(1.5rem, 8vw, 3rem);
+    bottom: 1rem;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .ballerina {
+    max-width: 80px;
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .video-header {
+    height: 60vh;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .navbar {
+    top: 0.5rem;
+  }
+
+  .navbar ul {
+    font-size: 0.9rem;
+  }
 }
